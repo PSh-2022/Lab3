@@ -1,7 +1,10 @@
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += charts
 
+TARGET = LastCase
+TEMPLATE = app
 CONFIG += c++11
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -10,10 +13,13 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    widget.cpp
 
 HEADERS += \
-    mainwindow.h
+    bdmodel.h \
+    mainwindow.h \
+    widget.h
 
 FORMS += \
     mainwindow.ui
