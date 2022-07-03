@@ -1,7 +1,6 @@
 #include "mainwindow.h"
-
 #include <QApplication>
-//for first commit
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

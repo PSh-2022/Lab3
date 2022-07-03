@@ -1,7 +1,7 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 #include <QtWidgets/QWidget>
-#include <QtCharts/QChartGlobal>
+#include <QtCharts>
 #include <QPair>
 #include <QPoint>
 #include <QString>
