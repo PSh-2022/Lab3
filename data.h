@@ -2,6 +2,7 @@
 #define DATA_H
 #include <QString>
 
+//класс, объект которого хранит данные, полученные из базы данных
 class DataStorage
 {
 public:
@@ -10,24 +11,25 @@ public:
     DataStorage (QString key_, double value_) { key = key_; value = value_; };//конструктор по умолчанию
 };
 
-// интерфейс IOC контейнера для чтения данных для отрисовки диаграмм
+// интерфейс IOC контейнера для чтения данных из файла
 class IChartData
 {
 public:
-    virtual QVector <DataStorage> getData (QString path_) = 0;//возвращаем данные из таблиц
+    //функция для получения данных, сохраняемых в QVector <DataStorage>
+    virtual QVector <DataStorage> getData (QString path_) = 0;
 };
-//используем IOC контейнер, менять IChartData при смене типа баз данных не нужно
-// формат.sqlite
+//реализация интерфейса: формат .sqlite
 class ChartDataSqlite : public IChartData
 {
 public:
+    //функция для получения данных из файла формата .sqlite, сохраняемых в QVector <DataStorage>
     QVector <DataStorage> getData (QString path_);
 };
-
-//формат .json
+//реализация интерфейса: формат .json
 class ChartDataJson : public IChartData
 {
 public:
+    //функция для получения данных из файла формата .json, сохраняемых в QVector <DataStorage>
     QVector <DataStorage> getData (QString path_);
 };
 

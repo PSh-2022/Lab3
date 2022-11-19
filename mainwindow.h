@@ -29,12 +29,12 @@ public:
 
 private:
     QFileSystemModel *fileModel; // модель файловой системы
-    QTableView *tableView; // модель табличного представления
-    QString homePath;
+    QTableView *tableView; // модель табличного представления файловой системы
+    QString homePath;//путь к файлу
     QComboBox* boxType; // выпадающий список с типами диаграмм
     QCheckBox *checkboxColor; // чекбокс для смены цвета диаграммы
 
-    // Анонимная структура для взаимодействия с Диаграммой
+    // Анонимная структура для взаимодействия с диаграммой
     struct
     {
         Charts* chart;

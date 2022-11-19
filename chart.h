@@ -15,41 +15,45 @@
 #include "data.h"
 #include "ioccontainer.h"
 
-// интерфейс IOC контейнера для отрисовки диаграмм
+// интерфейс, строит новую диаграмму
 class IChartDrawing
 {
 public:
-    virtual void drawChart(QVector <DataStorage> data, bool isColored = true, QChart* chart_ = new QChart()) = 0;//отрисовка диаграмм
+    //функция, строящая новую диаграмму QChart* chart_ по данным QVector <DataStorage> data
+    virtual void drawChart(QVector <DataStorage> data, bool isColored = true, QChart* chart_ = new QChart()) = 0;
 };
-
-class barChartDrawing : public IChartDrawing//столбчатая
+//реализация интерфейса: столбчатая диаграмма
+class barChartDrawing : public IChartDrawing
 {
 public:
+    //функция, строящая новую столбчатую диаграмму QChart* chart_ по данным QVector <DataStorage> data
     virtual void drawChart(QVector <DataStorage> data, bool isColored = true, QChart* chart_= new QChart()); // по умолчанию - цветная
 };
-
+//реализация интерфейса: круговая диаграмма
 class pieChartDrawing : public IChartDrawing//круговая
 {
 public:
+    //функция, строящая новую круговую диаграмму QChart* chart_ по данным QVector <DataStorage> data
     virtual void drawChart(QVector <DataStorage> data, bool isColored = true, QChart* chart_= new QChart()); //  по умолчанию - цветная
 };
-
 class Charts//работа с диаграммами
 {
-private:
-
-    QChart *chart_; //диаграмма
-    QVector <DataStorage> data_; // ключ данных( дата-время) и значение данных из таблиц
+    QChart *chart_; //содержит информацию о представлении диаграммы
+    QVector <DataStorage> data_; //ключ-данные(дата-время) и значение данных из таблиц
     bool isColored_; // цвет диаграммы
 public:
     Charts(): chart_( new QChart()), isColored_ (true){} // конструктор по умолчанию
-
-    QChart* getChart(); // геттер для получения диаграммы класса QChart
-
-    void updateData(const QString& filePath); // обновление данных
-    void reDrawChart() const; // перерисовка диаграмм
-    void changeColor(); //смена цвета
-
+    QChart* getChart(){return chart_;}; // геттер получения представления диаграммы
+    void updateData(const QString& filePath); // обновление данных диаграммы
+    void reDrawChart() const{
+        IOCContainer::instance().GetObject<IChartDrawing>()->drawChart(data_,isColored_,chart_);
+    }; // изменение представления диаграммы
+    void changeColor(){
+        if(isColored_ == true)
+            isColored_ = false;
+        else
+            isColored_ = true;
+    }; //смена цвета
 };
 
 #endif // CHARTS_H

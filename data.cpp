@@ -7,9 +7,8 @@ QVector <DataStorage> ChartDataSqlite::getData (QString path_)
 {
     QVector <DataStorage> data;//вектор данных
 
-    static QSqlDatabase dbase = QSqlDatabase::addDatabase("QSQLITE");// соединяемся с драйвером "QSQLITE"
-    dbase.setDatabaseName(path_);
-
+    static QSqlDatabase dbase = QSqlDatabase::addDatabase("QSQLITE");//создаем статическую переменную базы данных sqllite
+    dbase.setDatabaseName(path_);//передаем путь к файлу базы данных
     if (!dbase.open())//если не открыт
     {
         QMessageBox messageBox;
