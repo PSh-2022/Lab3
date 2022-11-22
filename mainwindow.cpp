@@ -214,9 +214,3 @@ void MainWindow::slotSaveToPdf()
         messageBox.exec();
     }
 }
-
-MainWindow::~MainWindow()
-{
-
-}
-

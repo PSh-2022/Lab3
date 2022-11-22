@@ -25,7 +25,7 @@ private slots:
 
 public:
     MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    ~MainWindow(){};
 
 private:
     QFileSystemModel *fileModel; // модель файловой системы
