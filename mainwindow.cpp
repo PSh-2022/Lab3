@@ -49,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
     QString homePath = QDir::homePath();//путь
-    setGeometry(200, 200, 800, 800);//размер главного окна
+    setGeometry(400, 100, 800, 600);//размер главного окна
     setWindowTitle("PrintChart");
 
     // определяем файловую систему:

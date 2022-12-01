@@ -13,10 +13,10 @@ void barChartDrawing::drawChart(QVector<DataStorage> data, bool isColored, QChar
         QString legendHeader (elem.key); // задаем легенду карты по времени добавления данных, полученному из базы данных
         QBarSet *set = new QBarSet(legendHeader); // передаем легенду
         if (!isColored) // цвет
-        {
+        {//чб
             set->setColor(QColor(j,j,j));
             j+=15;}
-        *set << elem.value; // добавляем значение в набор данных для столбчатой диаграммы
+        *set << elem.value; // добавляем значение в набор данных для столбчатой диаграммы]
         series->append(set); // добавлеяем набор в серию данных для столбчатой диаграммы
         i++;//переходим к следующему набору
     }
@@ -29,17 +29,20 @@ void barChartDrawing::drawChart(QVector<DataStorage> data, bool isColored, QChar
 void pieChartDrawing::drawChart(QVector<DataStorage> data, bool isColored, QChart* chart_)
 {
     chart_->setTitle("Pie chart"); // задаем заголовок
-    QPieSeries *series = new QPieSeries{chart_}; //серии данных для круговой диаграммы
+    QPieSeries *series = new QPieSeries(chart_); //серии данных для круговой диаграммы
     int i = 0; //счетчик количества считываемых данных из базы
     int j = 0; //чб/цвет
     foreach (DataStorage elem, data) // для каждого элемента
     {
         QString legendHeader (elem.key); // задаем легенду карты по времени добавления данных, полученному из базы данных
-        series->append(legendHeader, elem.value); // добавляем в серию запись из легенды и соответствующие данные
+        QPieSlice *slice = new QPieSlice();
+        slice->setLabel(elem.key);
         if (!isColored) // цвет
-        {
-            series->slices().at(i)->setColor(QColor(j,j,j));
+        {//чб
+            slice->setBrush(QColor(j,j,j));
             j+=15;}
+        slice->setValue(elem.value);
+        series->append(slice);
         i++;//переходим к следующему набору
     }
     chart_->removeAllSeries(); // очищаем предыдущие серии

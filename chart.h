@@ -27,14 +27,14 @@ class barChartDrawing : public IChartDrawing
 {
 public:
     //функция, строящая новую столбчатую диаграмму QChart* chart_ по данным QVector <DataStorage> data
-    virtual void drawChart(QVector <DataStorage> data, bool isColored = true, QChart* chart_= new QChart()); // по умолчанию - цветная
+    void drawChart(QVector <DataStorage> data, bool isColored = true, QChart* chart_= new QChart()); // по умолчанию - цветная
 };
 //реализация интерфейса: круговая диаграмма
 class pieChartDrawing : public IChartDrawing//круговая
 {
 public:
     //функция, строящая новую круговую диаграмму QChart* chart_ по данным QVector <DataStorage> data
-    virtual void drawChart(QVector <DataStorage> data, bool isColored = true, QChart* chart_= new QChart()); //  по умолчанию - цветная
+    void drawChart(QVector <DataStorage> data, bool isColored = true, QChart* chart_= new QChart()); //  по умолчанию - цветная
 };
 class Charts//работа с диаграммами
 {
